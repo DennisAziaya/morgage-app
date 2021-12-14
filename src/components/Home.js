@@ -48,7 +48,7 @@ const Home = (props) => {
     const getStepsContent = (stepIndex) => {
         switch (stepIndex) {
             case 0:
-                return <SignUp/>
+                return <SignUp activeStep={activeStep} steps={steps} handleNext={handleNext}/>
             case 1:
                 return <Plan/>
             case 2:
@@ -92,13 +92,13 @@ const Home = (props) => {
                         <div>
                             {getStepsContent(activeStep)}
                         </div>
-                        <Divider sx={{ marginTop: "2rem", marginBottom : "5rem"}}>
-                            {activeStep === steps.length ? "The Steps" : (
-                                <Button sx={{ borderRadius : "50%", backgroundColor: "orange" }} variant={"contained"} onClick={handleNext}>
-                                    {activeStep === steps.length ? "Finnish" : "Next"}
-                                </Button>
-                            )}
-                        </Divider>
+                        {/*<Divider sx={{ marginTop: "2rem", marginBottom : "5rem"}}>*/}
+                        {/*    {activeStep === steps.length ? "The Steps" : (*/}
+                        {/*        <Button sx={{ borderRadius : "50%", backgroundColor: "orange" }} variant={"contained"} onClick={handleNext}>*/}
+                        {/*            {activeStep === steps.length ? "Finnish" : "Next"}*/}
+                        {/*        </Button>*/}
+                        {/*    )}*/}
+                        {/*</Divider>*/}
                     </Box>
                 </Container>
             </Box>

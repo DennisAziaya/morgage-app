@@ -1,37 +1,20 @@
 import * as React from 'react';
 import {useState} from "react";
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {createTheme, ThemeProvider} from '@mui/material/styles';
-import {Menu, Send, SendSharp, Visibility, VisibilityOff} from "@mui/icons-material";
+import {BlockSharp, Send,  Visibility, VisibilityOff} from "@mui/icons-material";
 
 import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/main.css'
-import {makeStyles} from "@mui/styles";
 import {FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput} from "@mui/material";
 import useForm from "../useForm";
 
 
-const theme = createTheme();
-
-const useStyles = makeStyles((theme) => ({
-    phoneInput: {
-        height: "100%",
-        width: "100%"
-    }
-}))
-
-const SignUp = () => {
+const SignUp = ({ activeStep, steps, handleNext }) => {
 
     const stateSchema = {
         firstName: {value: "", error: ""},
@@ -39,36 +22,36 @@ const SignUp = () => {
         email: {value: "", error: ""},
         phone: {value: "", error: ""},
         password: {value: "", error: ""},
-        confirmPassword: {value: "", error: ""}
+        passwordConfirm: {value: "", error: ""}
     }
 
     const stateValidatorSchema = {
         firstName: {
             required: true,
             validator: {
-                func: value => /^([A-Za-z] [A-Za-z])+([A-Za-z] [A-Za-z'-]+)*/.test(value),
+                func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-]+)*/.test(value),
                 error: "First name must be more than 1 characters"
             }
         },
         lastName: {
             required: true,
             validator: {
-                func: value => /^([A-Za-z] [A-Za-z])+([A-Za-z] [A-Za-z'-]+)+([A-Za-z] [A-Za-z'-]+)*/.test(value),
+                func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
                 error: "Last name must be more than 3 characters"
             }
         },
         email: {
             required: true,
             validator: {
-                func: value => /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})&/.test(value),
+                func: value => /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(value),
                 error: "Invalid Email Address"
             }
         },
         password: {
             required: true,
             validator: {
-                func: value => /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})&/.test(value),
-                error: "Minimum 6 Characters and atleast one special character /%$3* "
+                func: value => /^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(value),
+                error: "Minimum 6 Characters and at least one special character /%$3.=)&@* "
             }
         }
     }
@@ -90,8 +73,6 @@ const SignUp = () => {
         setShowPasswordConfirmValues({showPasswordConfirm: !showPasswordConfirmValues.showPasswordConfirm});
     };
 
-
-    const classes = useStyles();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -119,15 +100,15 @@ const SignUp = () => {
                                 fullWidth
                                 id="firstName"
                                 label="First Name"
-                                name = "firstName"
+                                name="firstName"
                                 value={firstName}
                                 onChange={handleOnChange}
 
                             />
-                            { errors.firstName && dirty.firstName && (
-                                <Typography variant={"p"} sx={{ color : "red", fontWeight : "200" }}>
+                            {errors.firstName && dirty.firstName && (
+                                <Typography variant={"p"} sx={{color: "red", fontWeight: "200"}}>
                                     {errors.firstName}
-                                </Typography>) }
+                                </Typography>)}
                         </Grid>
                         <Grid item xs={12} sm={4} md={4} lg={4}>
                             <TextField
@@ -138,10 +119,10 @@ const SignUp = () => {
                                 value={lastName}
                                 onChange={handleOnChange}
                             />
-                            { errors.lastName && dirty.lastName && (
-                                <Typography variant={"p"} sx={{ color : "red", fontWeight : "200" }}>
+                            {errors.lastName && dirty.lastName && (
+                                <Typography variant={"p"} sx={{color: "red", fontWeight: "200"}}>
                                     {errors.lastName}
-                                </Typography>) }
+                                </Typography>)}
                         </Grid>
                         <Grid item xs={12} sm={4} md={4} lg={4}>
                             <TextField
@@ -152,10 +133,10 @@ const SignUp = () => {
                                 value={email}
                                 onChange={handleOnChange}
                             />
-                            { errors.email && dirty.email && (
-                                <Typography variant={"p"} sx={{ color : "red", fontWeight : "200" }}>
+                            {errors.email && dirty.email && (
+                                <Typography sx={{color: "red", fontWeight: "200"}}>
                                     {errors.email}
-                                </Typography>) }
+                                </Typography>)}
                         </Grid>
                         <Grid item xs={12} sm={4} md={4} lg={4}>
                             <IntlTelInput
@@ -168,6 +149,8 @@ const SignUp = () => {
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-password"
+                                    name="password"
+                                    onChange={handleOnChange}
                                     type={showPasswordValues.showPassword ? 'text' : 'password'}
                                     value={showPasswordValues.password}
                                     endAdornment={
@@ -184,6 +167,10 @@ const SignUp = () => {
                                     label="Password"
                                 />
                             </FormControl>
+                            {errors.password && dirty.password && (
+                                <Typography sx={{color: "red", fontWeight: "200"}}>
+                                    {errors.password}
+                                </Typography>)}
                         </Grid>
                         <Grid item xs={12} sm={4} md={4} lg={4}>
                             <FormControl variant="outlined" sx={{width: "100%"}}>
@@ -205,11 +192,38 @@ const SignUp = () => {
                                         </InputAdornment>
                                     }
                                     label="Confirm Password"
+                                    name="passwordConfirm"
+                                    onChange={handleOnChange}
                                 />
                             </FormControl>
+                            {passwordConfirm !== password ? (
+                                <Typography sx={{color: "red", fontWeight: "400"}}>
+                                    Passwords do not match
+                                </Typography>
+                            ) : null}
                         </Grid>
                     </Grid>
-                    <Button sx={{mt: 3, mb: 2}} variant={"outlined"} endIcon={<Send/>}>Sign Up</Button>
+                    {
+                        !firstName ||
+                        !lastName ||
+                        !email ||
+                        !password ||
+                        !passwordConfirm || passwordConfirm !== password ? (
+                            <Button
+                                disabled
+                                onClick={handleNext}
+                                sx={{mt: 3, mb: 2}} variant={"outlined"} endIcon={<BlockSharp/>}>
+                                {activeStep === steps.length ? "Finnish" : "Sign Up"}
+                            </Button>
+                        ) : (
+                            <Button
+                                sx={{mt: 3, mb: 2}}
+                                variant={"outlined"}
+                                onClick={handleNext}
+                                endIcon={<Send/>}>
+                                {activeStep === steps.length ? "Finnish" : "Sign Up"}
+                            </Button>)
+                    }
                 </Box>
             </Box>
         </Container>
