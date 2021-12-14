@@ -36,11 +36,6 @@ const SignUp = () => {
     const [showPasswordConfirmValues, setShowPasswordConfirmValues] = useState({showPasswordConfirm : false});
 
 
-
-    // const handleChange = (prop) => (event) => {
-    //     setValues({ ...values, [prop]: event.target.value });
-    // };
-
     const handleClickShowPassword = () => {
         setShowPasswordValues({showPassword: !showPasswordValues.showPassword});
     };
@@ -49,11 +44,8 @@ const SignUp = () => {
         setShowPasswordConfirmValues({showPasswordConfirm: !showPasswordConfirmValues.showPasswordConfirm});
     };
 
-    // const handleMouseDownPassword = (event) => {
-    //     event.preventDefault();
-    // };
 
-    //const classes = useStyles();
+    const classes = useStyles();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -66,9 +58,7 @@ const SignUp = () => {
     };
 
     return (
-        <ThemeProvider theme={theme}>
             <Container maxWidth="md">
-                {/*<CssBaseline />*/}
                 <Box
                 >
                     <Typography sx={{textAlign : "center", textTransform : "uppercase"}} component="h1" variant="h5" gutterBottom>
@@ -120,13 +110,11 @@ const SignUp = () => {
                                         id="outlined-adornment-password"
                                         type={showPasswordValues.showPassword ? 'text' : 'password'}
                                         value={showPasswordValues.password}
-                                        //onChange={handleChange('password')}
                                         endAdornment={
                                             <InputAdornment position="end">
                                                 <IconButton
                                                     aria-label="toggle password visibility"
                                                     onClick={handleClickShowPassword}
-                                                    //onMouseDown={handleMouseDownPassword}
                                                     edge="end"
                                                 >
                                                     {showPasswordValues.showPassword ? <VisibilityOff /> : <Visibility />}
@@ -144,13 +132,11 @@ const SignUp = () => {
                                         id="outlined-adornment-password"
                                         type={showPasswordConfirmValues.showPasswordConfirm ? 'text' : 'password'}
                                         value={showPasswordValues.showPasswordConfirm}
-                                        //onChange={handleChange('password')}
                                         endAdornment={
                                             <InputAdornment position="end">
                                                 <IconButton
                                                     aria-label="toggle password visibility"
                                                     onClick={handleClickShowPasswordConfirm}
-                                                    //onMouseDown={handleMouseDownPassword}
                                                     edge="end"
                                                 >
                                                     {showPasswordConfirmValues.showPasswordConfirm ? <VisibilityOff /> : <Visibility />}
@@ -165,7 +151,6 @@ const SignUp = () => {
                     </Box>
                 </Box>
             </Container>
-        </ThemeProvider>
     );
 }
 
