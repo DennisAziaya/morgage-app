@@ -92,9 +92,9 @@ const Home = (props) => {
                         <div>
                             {getStepsContent(activeStep)}
                         </div>
-                        <Divider sx={{ marginTop: "4rem" }}>
+                        <Divider sx={{ marginTop: "2rem", marginBottom : "5rem"}}>
                             {activeStep === steps.length ? "The Steps" : (
-                                <Button sx={{ borderRadius : "50%" }} variant={"contained"} onClick={handleNext}>
+                                <Button sx={{ borderRadius : "50%", backgroundColor: "orange" }} variant={"contained"} onClick={handleNext}>
                                     {activeStep === steps.length ? "Finnish" : "Next"}
                                 </Button>
                             )}
