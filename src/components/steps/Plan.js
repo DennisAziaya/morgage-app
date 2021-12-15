@@ -1,17 +1,20 @@
-import React from 'react';
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import {FormControl, IconButton, InputAdornment, InputLabel, MenuItem, Select} from "@mui/material";
-import {AccountCircle, HelpSharp} from "@mui/icons-material";
-import Typography from "@mui/material/Typography";
+import * as React from 'react';
+import {useState} from "react";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import {BlockSharp, Send,  Visibility, VisibilityOff} from "@mui/icons-material";
 
-const Plan = (props) => {
-    function handleSubmit() {
+import IntlTelInput from 'react-intl-tel-input';
+import 'react-intl-tel-input/dist/main.css'
+import {FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput, Select} from "@mui/material";
+import useForm from "../useForm";
 
-    }
+
+const MorgagePlan = ({ activeStep, steps, handleNext }) => {
 
     const years= () => {
         let total_years = []
@@ -22,23 +25,71 @@ const Plan = (props) => {
     }
     const loan_terms = years();
 
+    // Purpose
+    // loanTerm
+    // initialContribution
+    // loanAmount
+
+    const stateSchema = {
+        purpose: {value: "", error: ""},
+        loanTerm: {value: "", error: ""},
+        initialContribution: {value: "", error: ""},
+        loanAmount: {value: "", error: ""}
+    }
+
+    const stateValidatorSchema = {
+        purpose: {
+            required: true,
+            validator: {
+                func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
+                error: "First name must be more than 3 characters"
+            }
+        },
+        loanTerm: {
+            required: true,
+            validator: {
+                func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
+                error: "Sirname must be more than 3 characters"
+            }
+        },
+        initialContribution: {
+            required: true,
+            validator: {
+                func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
+                error: " characters must be more than 1 "
+            }
+        },
+        loanAmount: {
+            required: true,
+            validator: {
+                func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
+                error: " characters must be more than 1 "
+            }
+        }
+    }
+
+    const {values, errors, dirty, handleOnChange} = useForm(stateSchema, stateValidatorSchema)
+
+    const {purpose, loanTerm, initialContribution, loanAmount} = values
+
+
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        // eslint-disable-next-line no-console
+    };
+
     return (
         <Container maxWidth="md">
-            {/*<CssBaseline />*/}
             <Box
-                // sx={{
-                //     marginTop: 8,
-                //     display: 'flex',
-                //     flexDirection: 'column',
-                //     alignItems: 'center',
-                // }}
             >
                 <Typography sx={{textAlign: "center", textTransform: "uppercase"}} component="h1" variant="h5"
                             gutterBottom>
-                    Plan
+                    Morgage Plan
                 </Typography>
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 3}}>
-                    <Grid container spacing={2}>
+                    <Grid container spacing={3}>
                         <Grid item xs={12} sm={6} md={6} lg={6}>
                             <FormControl fullWidth required>
                                 <InputLabel id="demo-controlled-open-select-label">Purpose of the loan</InputLabel>
@@ -46,18 +97,25 @@ const Plan = (props) => {
                                     labelId="demo-controlled-open-select-label"
                                     id="demo-controlled-open-select"
                                     label="Purpose of the loan"
+                                        name="purpose"
+                                        value={purpose}
+                                        onChange={handleOnChange}
                                 >
-                                    <MenuItem value={10}>For housing purchase</MenuItem>
-                                    <MenuItem value={10}>Buying a home (consultation on borrowing
+                                    <MenuItem value="forHousingPurchase">For housing purchase</MenuItem>
+                                    <MenuItem value="buyingHome">Buying a home (consultation on borrowing
                                         opportunities)</MenuItem>
-                                    <MenuItem value={10}>For house construction</MenuItem>
-                                    <MenuItem value={10}>For the purchase of a plot of land</MenuItem>
-                                    <MenuItem value={10}>Home exchange</MenuItem>
-                                    <MenuItem value={10}>For home repair or renovation</MenuItem>
-                                    <MenuItem value={10}>Other</MenuItem>
-                                    <MenuItem value={10}>Amendments to the loan agreement</MenuItem>
+                                    <MenuItem value="houseConstruction">For house construction</MenuItem>
+                                    <MenuItem value="purchasePlot">For the purchase of a plot of land</MenuItem>
+                                    <MenuItem value="homeExchange">Home exchange</MenuItem>
+                                    <MenuItem value="homeRepairRenovation">For home repair or renovation</MenuItem>
+                                    <MenuItem value="amendmentsLoanAgreement">Amendments to the loan agreement</MenuItem>
+                                    <MenuItem value="other">Other</MenuItem>
                                 </Select>
                             </FormControl>
+                            {errors.purpose && dirty.purpose && (
+                                <Typography variant={"p"} sx={{color: "red", fontWeight: "200"}}>
+                                    {errors.purpose}
+                                </Typography>)}
                         </Grid>
                         <Grid item xs={12} sm={6} md={6} lg={6}>
                             <FormControl fullWidth required>
@@ -66,42 +124,76 @@ const Plan = (props) => {
                                     labelId="demo-controlled-open-select-label"
                                     id="demo-controlled-open-select"
                                     label="Loan term"
+                                    name="loanTerm"
+                                    value={loanTerm}
+                                    onChange={handleOnChange}
                                 >
                                     {
-                                    loan_terms.map((t) => (
-                                        <MenuItem key={t} value={t}>{t} Years</MenuItem>
-                                    ))
-                                }
+                                        loan_terms.map((t) => (
+                                            <MenuItem key={t} value={t}>{t} Years</MenuItem>
+                                        ))
+                                    }
 
                                 </Select>
                             </FormControl>
+                            {errors.loanTerm && dirty.loanTerm && (
+                                <Typography variant={"p"} sx={{color: "red", fontWeight: "200"}}>
+                                    {errors.loanTerm}
+                                </Typography>)}
                         </Grid>
                         <Grid item xs={12} sm={6} md={6} lg={6}>
                             <TextField
                                 required
                                 fullWidth
-                                id="lastName"
                                 label="How much will you pay for the initial contribution?"
-                                name="lastName"
-                                autoComplete="family-name"
+                                name="initialContribution"
+                                value={initialContribution}
+                                onChange={handleOnChange}
                             />
+                            {errors.initialContribution && dirty.initialContribution && (
+                                <Typography sx={{color: "red", fontWeight: "200"}}>
+                                    {errors.initialContribution}
+                                </Typography>)}
                         </Grid>
                         <Grid item xs={12} sm={6} md={6} lg={6}>
                             <TextField
                                 required
                                 fullWidth
-                                id="email"
-                                label="Loan amount"
-                                name="email"
-                                autoComplete="email"
+                                label="Loan Amount"
+                                name="loanAmount"
+                                value={loanAmount}
+                                onChange={handleOnChange}
                             />
+                            {errors.loanAmount && dirty.loanAmount && (
+                                <Typography sx={{color: "red", fontWeight: "200"}}>
+                                    {errors.loanAmount}
+                                </Typography>)}
                         </Grid>
                     </Grid>
+                    {
+                        !purpose ||
+                        !loanTerm ||
+                        !initialContribution ||
+                        !loanAmount ? (
+                            <Button
+                                disabled
+                                onClick={handleNext}
+                                sx={{mt: 3, mb: 2}} variant={"outlined"} endIcon={<BlockSharp/>}>
+                                {activeStep === steps.length ? "Finnish" : "Next"}
+                            </Button>
+                        ) : (
+                            <Button
+                                sx={{mt: 3, mb: 2}}
+                                variant={"outlined"}
+                                onClick={handleNext}
+                                endIcon={<Send/>}>
+                                {activeStep === steps.length ? "Finnish" : "Next"}
+                            </Button>)
+                    }
                 </Box>
             </Box>
         </Container>
     );
 }
 
-export default Plan;
-
+export default MorgagePlan;
