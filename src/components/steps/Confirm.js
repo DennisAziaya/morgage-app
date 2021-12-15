@@ -2,8 +2,10 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import {Container, Divider} from "@mui/material";
+import {Undo} from "@mui/icons-material";
+import Button from "@mui/material/Button";
 
-const Confirm = () => {
+const Confirm = ({ activeStep, steps, handlePrevious }) => {
     return (
         <Container maxWidth="md" sx={{ marginTop : "2rem", marginBottom : "2rem" }}>
             <Grid container spacing={2}>
@@ -30,6 +32,12 @@ const Confirm = () => {
                             <Grid item xs={12} xl={4} md={4} sm={12}>
                                 <Typography variant="h6">
                                     Loan Amount <br/>
+                                    <span style={{color: "grey"}}>Muuyuyu</span>
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} xl={12} md={12} sm={12}>
+                                <Typography variant="h6">
+                                    How much will you pay for the initial contribution?<br/>
                                     <span style={{color: "grey"}}>Muuyuyu</span>
                                 </Typography>
                             </Grid>
@@ -100,6 +108,13 @@ const Confirm = () => {
                             </Grid>
                         </Grid>
                     </Grid>
+                    <Button
+                        sx={{mt: 3, mb: 2}}
+                        variant={"contained"}
+                        onClick={handlePrevious}
+                        endIcon={<Undo/>}>
+                        {activeStep === steps.length ? "Finnish" : "Go Back"}
+                    </Button>
                 </Container>
             </Grid>
         </Container>

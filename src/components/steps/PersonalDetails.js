@@ -5,13 +5,13 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {BlockSharp, Send} from "@mui/icons-material";
+import {BlockSharp, Send, Undo} from "@mui/icons-material";
 
 import 'react-intl-tel-input/dist/main.css'
 import useForm from "../useForm";
 
 
-const PersonalDetails = ({ activeStep, steps, handleNext }) => {
+const PersonalDetails = ({ activeStep, steps, handleNext, handlePrevious }) => {
 
 
     const stateSchema = {
@@ -55,15 +55,15 @@ const PersonalDetails = ({ activeStep, steps, handleNext }) => {
         postalCode: {
             required: true,
             validator: {
-                func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-]+)*/.test(value),
+                func: value => /^\d+$/.test(value),
                 error: "First name must be more than 1 characters"
             }
         },
         country: {
             required: true,
             validator: {
-                func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
-                error: "Country must be more than 4 characters"
+                func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
+                error: "Country must be more than 3 characters"
             }
         }
     }
@@ -152,7 +152,7 @@ const PersonalDetails = ({ activeStep, steps, handleNext }) => {
                             <TextField
                                 required
                                 fullWidth
-                                label="postalCode"
+                                label="Postal Code"
                                 name="postalCode"
                                 value={postalCode}
                                 onChange={handleOnChange}
@@ -177,27 +177,39 @@ const PersonalDetails = ({ activeStep, steps, handleNext }) => {
                                 </Typography>)}
                         </Grid>
                     </Grid>
-                    {
-                        !firstName ||
-                        !familyName ||
-                        !physicalAddress ||
-                        !state ||
-                        !country || !postalCode ? (
-                            <Button
-                                disabled
-                                onClick={handleNext}
-                                sx={{mt: 3, mb: 2}} variant={"outlined"} endIcon={<BlockSharp/>}>
-                                {activeStep === steps.length ? "Finnish" : "Next"}
-                            </Button>
-                        ) : (
+                    <Grid container spacing={2}>
+                        <Grid item>
+                            {
+                                !firstName ||
+                                !familyName ||
+                                !physicalAddress ||
+                                !state ||
+                                !country || !postalCode ? (
+                                    <Button
+                                        disabled
+                                        sx={{mt: 3, mb: 2}} variant={"outlined"} endIcon={<BlockSharp/>}>
+                                        {activeStep === steps.length ? "Finnish" : "Next"}
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        sx={{mt: 3, mb: 2}}
+                                        variant={"outlined"}
+                                        onClick={handleNext}
+                                        endIcon={<Send/>}>
+                                        {activeStep === steps.length ? "Finnish" : "Next"}
+                                    </Button>)
+                            }
+                        </Grid>
+                        <Grid item>
                             <Button
                                 sx={{mt: 3, mb: 2}}
                                 variant={"outlined"}
-                                onClick={handleNext}
-                                endIcon={<Send/>}>
-                                {activeStep === steps.length ? "Finnish" : "Next"}
-                            </Button>)
-                    }
+                                onClick={handlePrevious}
+                                endIcon={<Undo/>}>
+                                {activeStep === steps.length ? "Finnish" : "Go Back"}
+                            </Button>
+                        </Grid>
+                    </Grid>
                 </Box>
             </Box>
         </Container>

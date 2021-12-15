@@ -33,9 +33,15 @@ const Home = (props) => {
 
     const [activeStep, setActiveStep] = useState(0)
 
+
     //Handel Next Step
     const handleNext = () => {
         setActiveStep(prevActiveStep => prevActiveStep + 1)
+    }
+
+    //Handel Previous Step
+    const handlePrevious = () => {
+        setActiveStep(prevStep => prevStep - 1)
     }
 
     const getSteps = () => {
@@ -47,13 +53,13 @@ const Home = (props) => {
     const getStepsContent = (stepIndex) => {
         switch (stepIndex) {
             case 0:
-                return <SignUp activeStep={activeStep} steps={steps} handleNext={handleNext}/>
+                return <SignUp activeStep={activeStep} steps={steps} handleNext={handleNext} />
             case 1:
-                return <MortgagePlan activeStep={activeStep} steps={steps} handleNext={handleNext}/>
+                return <MortgagePlan activeStep={activeStep} steps={steps} handleNext={handleNext}  handlePrevious={handlePrevious}/>
             case 2:
-                return <PersonalDetails activeStep={activeStep} steps={steps} handleNext={handleNext}/>
+                return <PersonalDetails activeStep={activeStep} steps={steps} handleNext={handleNext}  handlePrevious={handlePrevious}/>
             case 3:
-                return <Confirm activeStep={activeStep} steps={steps} handleNext={handleNext}/>
+                return <Confirm activeStep={activeStep} steps={steps}  handlePrevious={handlePrevious}/>
             default:
                 return "Finnish"
 
@@ -75,7 +81,7 @@ const Home = (props) => {
                 </Typography>
             </Container>
             <Box>
-                <Stepper className={classes.root} alternativeLabel activeStep={activeStep}>
+                <Stepper className={classes.root} alternativeLabel activeStep={activeStep} >
                     {steps.map(label => (
                         <Step key={label}>
                             <StepLabel>

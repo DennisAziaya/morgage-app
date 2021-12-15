@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {BlockSharp, Send,  Visibility, VisibilityOff} from "@mui/icons-material";
+import {ArrowBackIosNew, BlockSharp, Send, Undo, Visibility, VisibilityOff} from "@mui/icons-material";
 
 import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/main.css'
@@ -203,27 +203,30 @@ const SignUp = ({ activeStep, steps, handleNext }) => {
                             ) : null}
                         </Grid>
                     </Grid>
-                    {
-                        !firstName ||
-                        !lastName ||
-                        !email ||
-                        !password ||
-                        !passwordConfirm || passwordConfirm !== password ? (
-                            <Button
-                                disabled
-                                onClick={handleNext}
-                                sx={{mt: 3, mb: 2}} variant={"outlined"} endIcon={<BlockSharp/>}>
-                                {activeStep === steps.length ? "Finnish" : "Sign Up"}
-                            </Button>
-                        ) : (
-                            <Button
-                                sx={{mt: 3, mb: 2}}
-                                variant={"outlined"}
-                                onClick={handleNext}
-                                endIcon={<Send/>}>
-                                {activeStep === steps.length ? "Finnish" : "Sign Up"}
-                            </Button>)
-                    }
+                    <Grid container spacing={5}>
+                        <Grid item>
+                            {
+                                !firstName ||
+                                !lastName ||
+                                !email ||
+                                !password ||
+                                !passwordConfirm || passwordConfirm !== password ? (
+                                    <Button
+                                        disabled
+                                        sx={{mt: 3, mb: 2}} variant={"outlined"} endIcon={<BlockSharp/>}>
+                                        {activeStep === steps.length ? "Finnish" : "Sign Up"}
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        sx={{mt: 3, mb: 2}}
+                                        variant={"outlined"}
+                                        onClick={handleNext}
+                                        endIcon={<Send/>}>
+                                        {activeStep === steps.length ? "Finnish" : "Sign Up"}
+                                    </Button>)
+                            }
+                        </Grid>
+                    </Grid>
                 </Box>
             </Box>
         </Container>

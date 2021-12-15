@@ -6,13 +6,13 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {BlockSharp, Send} from "@mui/icons-material";
+import {BlockSharp, Send, Undo} from "@mui/icons-material";
 import 'react-intl-tel-input/dist/main.css'
 import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import useForm from "../useForm";
 
 
-const MortgagePlan = ({ activeStep, steps, handleNext }) => {
+const MortgagePlan = ({ activeStep, steps, handleNext, handlePrevious }) => {
 
     const years= () => {
         let total_years = []
@@ -30,20 +30,12 @@ const MortgagePlan = ({ activeStep, steps, handleNext }) => {
 
     const stateSchema = {
         purpose: {value: "", error: ""},
-        loanTerm: {value: "", error: ""},
         initialContribution: {value: "", error: ""},
         loanAmount: {value: "", error: ""}
     }
 
     const stateValidatorSchema = {
         purpose: {
-            required: true,
-            validator: {
-                func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
-                error: "Must be more than 3 characters"
-            }
-        },
-        loanTerm: {
             required: true,
             validator: {
                 func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
@@ -60,15 +52,15 @@ const MortgagePlan = ({ activeStep, steps, handleNext }) => {
         loanAmount: {
             required: true,
             validator: {
-                func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
-                error: " characters must be more than 1 "
+                func: value => /^\d+$/.test(value),
+                error: "First name must be more than 1 characters"
             }
         }
     }
 
     const {values, errors, dirty, handleOnChange} = useForm(stateSchema, stateValidatorSchema)
 
-    const {purpose, loanTerm, initialContribution, loanAmount} = values
+    const {purpose, initialContribution, loanAmount, loanTerm} = values
 
 
 
@@ -134,10 +126,6 @@ const MortgagePlan = ({ activeStep, steps, handleNext }) => {
 
                                 </Select>
                             </FormControl>
-                            {errors.loanTerm && dirty.loanTerm && (
-                                <Typography variant={"p"} sx={{color: "red", fontWeight: "200"}}>
-                                    {errors.loanTerm}
-                                </Typography>)}
                         </Grid>
                         <Grid item xs={12} sm={6} md={6} lg={6}>
                             <TextField
@@ -168,26 +156,38 @@ const MortgagePlan = ({ activeStep, steps, handleNext }) => {
                                 </Typography>)}
                         </Grid>
                     </Grid>
-                    {
-                        !purpose ||
-                        !loanTerm ||
-                        !initialContribution ||
-                        !loanAmount ? (
-                            <Button
-                                disabled
-                                onClick={handleNext}
-                                sx={{mt: 3, mb: 2}} variant={"outlined"} endIcon={<BlockSharp/>}>
-                                {activeStep === steps.length ? "Finnish" : "Next"}
-                            </Button>
-                        ) : (
+                    <Grid container spacing={2}>
+                        <Grid item>
+                            {
+                                !purpose ||
+                                !loanTerm ||
+                                !initialContribution ||
+                                !loanAmount ? (
+                                    <Button
+                                        disabled
+                                        sx={{mt: 3, mb: 2}} variant={"outlined"} endIcon={<BlockSharp/>}>
+                                        {activeStep === steps.length ? "Finnish" : "Next"}
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        sx={{mt: 3, mb: 2}}
+                                        variant={"outlined"}
+                                        onClick={handleNext}
+                                        endIcon={<Send/>}>
+                                        {activeStep === steps.length ? "Finnish" : "Next"}
+                                    </Button>)
+                            }
+                        </Grid>
+                        <Grid item>
                             <Button
                                 sx={{mt: 3, mb: 2}}
                                 variant={"outlined"}
-                                onClick={handleNext}
-                                endIcon={<Send/>}>
-                                {activeStep === steps.length ? "Finnish" : "Next"}
-                            </Button>)
-                    }
+                                onClick={handlePrevious}
+                                endIcon={<Undo/>}>
+                                {activeStep === steps.length ? "Finnish" : "Go Back"}
+                            </Button>
+                        </Grid>
+                    </Grid>
                 </Box>
             </Box>
         </Container>

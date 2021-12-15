@@ -4,11 +4,10 @@
     <list default="true" id="76e7f75c-b294-46d3-bc4a-77bcb20b1515" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/steps/Confirm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/steps/Confirm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/steps/Income.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/steps/PersonalDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/steps/PersonalDetails.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/steps/Plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/steps/Plan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/steps/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/steps/SignUp.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +58,8 @@
       <workItem from="1639374990101" duration="26168000" />
       <workItem from="1639461741957" duration="17392000" />
       <workItem from="1639510345637" duration="5359000" />
-      <workItem from="1639550432598" duration="16297000" />
+      <workItem from="1639550432598" duration="19480000" />
+      <workItem from="1639591980403" duration="4463000" />
     </task>
     <servers />
   </component>
@@ -76,5 +76,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
