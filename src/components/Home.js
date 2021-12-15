@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import {makeStyles} from "@mui/styles";
-import {Box, Button, Container, Divider, Paper, Step, StepLabel, Stepper, Typography} from "@mui/material";
+import {Box, Container, Step, StepLabel, Stepper, Typography} from "@mui/material";
 import Main from "./layouts/Main";
 import SignUp from "./steps/SignUp";
-import Plan from "./steps/Plan";
 import PersonalDetails from "./steps/PersonalDetails";
-import Income from "./steps/Income";
 import Confirm from "./steps/Confirm";
+import MortgagePlan from "./steps/Plan";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,7 +41,7 @@ const Home = (props) => {
     const getSteps = () => {
 
 
-        return ["SIGN UP", "CHOOSE PLAN", "PERSONAL DETAILS", "INCOME", "CONFIRM DETAILS"]
+        return ["SIGN UP", "MORTGAGE", "PERSONAL DETAILS", "CONFIRM"]
     }
 
     const getStepsContent = (stepIndex) => {
@@ -50,15 +49,13 @@ const Home = (props) => {
             case 0:
                 return <SignUp activeStep={activeStep} steps={steps} handleNext={handleNext}/>
             case 1:
-                return <Plan/>
+                return <MortgagePlan activeStep={activeStep} steps={steps} handleNext={handleNext}/>
             case 2:
-                return <PersonalDetails/>
+                return <PersonalDetails activeStep={activeStep} steps={steps} handleNext={handleNext}/>
             case 3:
-                return <Income/>
-            case 4:
-                return <Confirm/>
+                return <Confirm activeStep={activeStep} steps={steps} handleNext={handleNext}/>
             default:
-                return "Unknown Step"
+                return "Finnish"
 
         }
     }

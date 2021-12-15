@@ -6,15 +6,13 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {BlockSharp, Send,  Visibility, VisibilityOff} from "@mui/icons-material";
-
-import IntlTelInput from 'react-intl-tel-input';
+import {BlockSharp, Send} from "@mui/icons-material";
 import 'react-intl-tel-input/dist/main.css'
-import {FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput, Select} from "@mui/material";
+import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import useForm from "../useForm";
 
 
-const MorgagePlan = ({ activeStep, steps, handleNext }) => {
+const MortgagePlan = ({ activeStep, steps, handleNext }) => {
 
     const years= () => {
         let total_years = []
@@ -42,14 +40,14 @@ const MorgagePlan = ({ activeStep, steps, handleNext }) => {
             required: true,
             validator: {
                 func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
-                error: "First name must be more than 3 characters"
+                error: "Must be more than 3 characters"
             }
         },
         loanTerm: {
             required: true,
             validator: {
                 func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
-                error: "Sirname must be more than 3 characters"
+                error: "Must be more than 3 characters"
             }
         },
         initialContribution: {
@@ -86,7 +84,7 @@ const MorgagePlan = ({ activeStep, steps, handleNext }) => {
             >
                 <Typography sx={{textAlign: "center", textTransform: "uppercase"}} component="h1" variant="h5"
                             gutterBottom>
-                    Morgage Plan
+                    Mortgage Plan
                 </Typography>
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 3}}>
                     <Grid container spacing={3}>
@@ -196,4 +194,4 @@ const MorgagePlan = ({ activeStep, steps, handleNext }) => {
     );
 }
 
-export default MorgagePlan;
+export default MortgagePlan;

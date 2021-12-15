@@ -16,7 +16,7 @@ const PersonalDetails = ({ activeStep, steps, handleNext }) => {
 
     const stateSchema = {
         firstName: {value: "", error: ""},
-        sirName: {value: "", error: ""},
+        familyName: {value: "", error: ""},
         physicalAddress: {value: "", error: ""},
         state: {value: "", error: ""},
         postalCode: {value: "", error: ""},
@@ -31,11 +31,11 @@ const PersonalDetails = ({ activeStep, steps, handleNext }) => {
                 error: "First name must be more than 3 characters"
             }
         },
-        sirName: {
+        familyName: {
             required: true,
             validator: {
                 func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
-                error: "Sirname must be more than 3 characters"
+                error: "Family Name must be more than 3 characters"
             }
         },
         physicalAddress: {
@@ -70,7 +70,7 @@ const PersonalDetails = ({ activeStep, steps, handleNext }) => {
 
     const {values, errors, dirty, handleOnChange} = useForm(stateSchema, stateValidatorSchema)
 
-    const {firstName, sirName, physicalAddress, state, postalCode, country} = values
+    const {firstName, familyName, physicalAddress, state, postalCode, country} = values
 
 
 
@@ -111,13 +111,13 @@ const PersonalDetails = ({ activeStep, steps, handleNext }) => {
                                 required
                                 fullWidth
                                 label="Family Name"
-                                name="sirName"
-                                value={sirName}
+                                name="familyName"
+                                value={familyName}
                                 onChange={handleOnChange}
                             />
-                            {errors.sirName && dirty.sirName && (
+                            {errors.familyName && dirty.familyName && (
                                 <Typography variant={"p"} sx={{color: "red", fontWeight: "200"}}>
-                                    {errors.sirName}
+                                    {errors.familyName}
                                 </Typography>)}
                         </Grid>
                         <Grid item xs={12} sm={4} md={4} lg={4}>
@@ -179,10 +179,10 @@ const PersonalDetails = ({ activeStep, steps, handleNext }) => {
                     </Grid>
                     {
                         !firstName ||
-                        !sirName ||
+                        !familyName ||
                         !physicalAddress ||
                         !state ||
-                        !country || postalCode ? (
+                        !country || !postalCode ? (
                             <Button
                                 disabled
                                 onClick={handleNext}

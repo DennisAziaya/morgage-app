@@ -1,101 +1,106 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import {Container} from "@mui/material";
+import {Container, Divider} from "@mui/material";
 
 const Confirm = () => {
     return (
-        <Container maxWidth="md">
-            <Typography sx={{textAlign: "center", textTransform: "uppercase"}} component="h1" variant="h5" gutterBottom>
-                Personal Details
-            </Typography>
+        <Container maxWidth="md" sx={{ marginTop : "2rem", marginBottom : "2rem" }}>
             <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        required
-                        id="firstName"
-                        name="firstName"
-                        label="First name"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        required
-                        id="lastName"
-                        name="lastName"
-                        label="Last name"
-                        fullWidth
-                        autoComplete="family-name"
-                        variant="standard"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        required
-                        id="address1"
-                        name="address1"
-                        label="Physical Address"
-                        fullWidth
-                        autoComplete="home address-line1"
-                        variant="standard"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        id="address2"
-                        name="address2"
-                        label="Additional Physical Address "
-                        fullWidth
-                        autoComplete="home address-line"
-                        variant="standard"
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        required
-                        id="city"
-                        name="city"
-                        label="City"
-                        fullWidth
-                        autoComplete="home address-level"
-                        variant="standard"
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        id="state"
-                        name="state"
-                        label="State/Province/Region"
-                        fullWidth
-                        variant="standard"
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        required
-                        id="zip"
-                        name="zip"
-                        label="Zip / Postal code"
-                        fullWidth
-                        autoComplete="home postal-code"
-                        variant="standard"
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        required
-                        id="country"
-                        name="country"
-                        label="Country"
-                        fullWidth
-                        autoComplete="home country"
-                        variant="standard"
-                    />
-                </Grid>
+                <Container sx={{margin : "2rem 0.5rem"}}>
+                        <Divider>
+                            <Typography variant="h5" gutterBottom>
+                                MORTGAGE
+                            </Typography>
+                        </Divider>
+                    <Grid item xs={12} >
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} xl={4} md={4} sm={12}>
+                                <Typography variant="h6">
+                                    Purpose of the loan<br/>
+                                    <span style={{color: "grey" }}>Muuyuyu</span>
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} xl={4} md={4} sm={12}>
+                                <Typography variant="h6">
+                                    Loan term<br/>
+                                    <span style={{color: "grey"}}>Muuyuyu</span>
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} xl={4} md={4} sm={12}>
+                                <Typography variant="h6">
+                                    Loan Amount <br/>
+                                    <span style={{color: "grey"}}>Muuyuyu</span>
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Container>
+                <Container sx={{margin : "2rem 0.5rem"}}>
+                        <Divider>
+                            <Typography variant="h5" gutterBottom>
+                                PERSONAL DETAILS
+                            </Typography>
+                        </Divider>
+                    <Grid item xs={12} >
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} xl={4} md={4} sm={12}>
+                                <Typography variant="h6">
+                                    First Name<br/>
+                                    <span style={{color: "grey"}}>Muuyuyu</span>
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} xl={4} md={4} sm={12}>
+                                <Typography variant="h6">
+                                    Family Name<br/>
+                                    <span style={{color: "grey"}}>Muuyuyu</span>
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} xl={4} md={4} sm={12}>
+                                <Typography variant="h6">
+                                    Last Name <br/>
+                                    <span style={{color: "grey"}}>Muuyuyu</span>
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} xl={4} md={4} sm={12}>
+                                <Typography variant="h6">
+                                    Email Address <br/>
+                                    <span style={{color: "grey"}}>Muuyuyu</span>
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} xl={4} md={4} sm={12}>
+                                <Typography variant="h6">
+                                    Phone <br/>
+                                    <span style={{color: "grey"}}>Muuyuyu</span>
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} xl={4} md={4} sm={12}>
+                                <Typography variant="h6">
+                                    Country <br/>
+                                    <span style={{color: "grey"}}>Muuyuyu</span>
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} xl={4} md={4} sm={12}>
+                                <Typography variant="h6">
+                                    Home Address <br/>
+                                    <span style={{color: "grey"}}>Muuyuyu</span>
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} xl={4} md={4} sm={12}>
+                                <Typography variant="h6">
+                                    Postal Code <br/>
+                                    <span style={{color: "grey"}}>Muuyuyu</span>
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} xl={4} md={4} sm={12}>
+                                <Typography variant="h6">
+                                    State <br/>
+                                    <span style={{color: "grey"}}>Muuyuyu</span>
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Container>
             </Grid>
         </Container>
     );

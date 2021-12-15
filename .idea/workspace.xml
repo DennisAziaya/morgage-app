@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="76e7f75c-b294-46d3-bc4a-77bcb20b1515" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/Main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/steps/Confirm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/steps/Confirm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/steps/Income.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/steps/PersonalDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/steps/PersonalDetails.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/steps/Plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/steps/Plan.js" afterDir="false" />
     </list>
@@ -55,11 +59,22 @@
       <workItem from="1639374990101" duration="26168000" />
       <workItem from="1639461741957" duration="17392000" />
       <workItem from="1639510345637" duration="5359000" />
-      <workItem from="1639550432598" duration="5933000" />
+      <workItem from="1639550432598" duration="16297000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
