@@ -23,10 +23,6 @@ const MortgagePlan = ({ activeStep, steps, handleNext, handlePrevious }) => {
     }
     const loan_terms = years();
 
-    // Purpose
-    // loanTerm
-    // initialContribution
-    // loanAmount
 
     const stateSchema = {
         purpose: {value: "", error: ""},
@@ -45,7 +41,7 @@ const MortgagePlan = ({ activeStep, steps, handleNext, handlePrevious }) => {
         initialContribution: {
             required: true,
             validator: {
-                func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
+                func: value => /^\d+$/.test(value),
                 error: " characters must be more than 1 "
             }
         },
@@ -53,7 +49,7 @@ const MortgagePlan = ({ activeStep, steps, handleNext, handlePrevious }) => {
             required: true,
             validator: {
                 func: value => /^\d+$/.test(value),
-                error: "First name must be more than 1 characters"
+                error: "Amount must be more than 1 characters"
             }
         }
     }
@@ -64,12 +60,6 @@ const MortgagePlan = ({ activeStep, steps, handleNext, handlePrevious }) => {
 
 
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        // eslint-disable-next-line no-console
-    };
-
     return (
         <Container maxWidth="md">
             <Box
@@ -78,7 +68,7 @@ const MortgagePlan = ({ activeStep, steps, handleNext, handlePrevious }) => {
                             gutterBottom>
                     Mortgage Plan
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 3}}>
+                <Box sx={{mt: 3}}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} sm={6} md={6} lg={6}>
                             <FormControl fullWidth required>

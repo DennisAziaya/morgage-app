@@ -74,15 +74,6 @@ const SignUp = ({ activeStep, steps, handleNext }) => {
     };
 
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        // eslint-disable-next-line no-console
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
 
     return (
         <Container maxWidth="md">
@@ -92,7 +83,7 @@ const SignUp = ({ activeStep, steps, handleNext }) => {
                             gutterBottom>
                     Sign up
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 3}}>
+                <Box sx={{mt: 3}}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={4} md={4} lg={4}>
                             <TextField

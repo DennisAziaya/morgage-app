@@ -49,7 +49,7 @@ const PersonalDetails = ({ activeStep, steps, handleNext, handlePrevious }) => {
             required: true,
             validator: {
                 func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
-                error: "State must be more than 4 characters"
+                error: "State must be more than 5 characters"
             }
         },
         postalCode: {
@@ -74,12 +74,6 @@ const PersonalDetails = ({ activeStep, steps, handleNext, handlePrevious }) => {
 
 
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        // eslint-disable-next-line no-console
-    };
-
     return (
         <Container maxWidth="md">
             <Box
@@ -88,7 +82,7 @@ const PersonalDetails = ({ activeStep, steps, handleNext, handlePrevious }) => {
                             gutterBottom>
                     Personal Information
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 3}}>
+                <Box sx={{mt: 3}}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={4} md={4} lg={4}>
                             <TextField

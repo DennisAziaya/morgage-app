@@ -35,12 +35,14 @@ const Home = (props) => {
 
 
     //Handel Next Step
-    const handleNext = () => {
+    const handleNext = (e) => {
+        e.preventDefault();
         setActiveStep(prevActiveStep => prevActiveStep + 1)
     }
 
     //Handel Previous Step
-    const handlePrevious = () => {
+    const handlePrevious = (e) => {
+        e.preventDefault();
         setActiveStep(prevStep => prevStep - 1)
     }
 
@@ -59,7 +61,7 @@ const Home = (props) => {
             case 2:
                 return <PersonalDetails activeStep={activeStep} steps={steps} handleNext={handleNext}  handlePrevious={handlePrevious}/>
             case 3:
-                return <Confirm activeStep={activeStep} steps={steps}  handlePrevious={handlePrevious}/>
+                return <Confirm activeStep={activeStep} steps={steps} values handlePrevious={handlePrevious}/>
             default:
                 return "Finnish"
 
@@ -95,13 +97,6 @@ const Home = (props) => {
                         <div>
                             {getStepsContent(activeStep)}
                         </div>
-                        {/*<Divider sx={{ marginTop: "2rem", marginBottom : "5rem"}}>*/}
-                        {/*    {activeStep === steps.length ? "The Steps" : (*/}
-                        {/*        <Button sx={{ borderRadius : "50%", backgroundColor: "orange" }} variant={"contained"} onClick={handleNext}>*/}
-                        {/*            {activeStep === steps.length ? "Finnish" : "Next"}*/}
-                        {/*        </Button>*/}
-                        {/*    )}*/}
-                        {/*</Divider>*/}
                     </Box>
                 </Container>
             </Box>
